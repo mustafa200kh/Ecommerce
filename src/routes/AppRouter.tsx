@@ -1,10 +1,6 @@
 import { lazy, Suspense } from "react";
 // Layout
-import {
-  createBrowserRouter,
-  createHashRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 //Layouts
 const MainLayout = lazy(() => import("@layout/MainLayout/MainLayout"));
 const ProfileLayout = lazy(() => import("@layout/ProfileLayout/ProfileLayout"));
