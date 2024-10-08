@@ -1,0 +1,21 @@
+.loader {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  border-radius: 50%;
+  border-right: 3px solid transparent;
+  border-left: 3px solid transparent;
+  border-top: 3px solid #00f;
+  border-bottom: 3px solid #00f;
+  box-sizing: border-box;
+  animation: loading 300ms linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
