@@ -1,3 +1,56 @@
+# name: Deploy
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+#     name: Build
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v4 # Updated from v3
+
+#       - name: Setup Node
+#         uses: actions/setup-node@v4 # Updated from v3
+#         with:
+#           node-version: "20" # Specify Node.js version (recommended)
+
+#       - name: Install dependencies
+#         run: npm ci # More reliable than npm-install action
+
+#       - name: Build project
+#         run: npm run build
+
+#       - name: Upload production-ready build files
+#         uses: actions/upload-artifact@v4 # Updated from v3
+#         with:
+#           name: production-files
+#           path: ./dist
+
+#   deploy:
+#     name: Deploy
+#     needs: build
+#     runs-on: ubuntu-latest
+#     if: github.ref == 'refs/heads/main'
+
+#     steps:
+#       - name: Download artifact
+#         uses: actions/download-artifact@v4 # Updated from v3
+#         with:
+#           name: production-files
+#           path: ./dist
+
+#       - name: Deploy to GitHub Pages
+#         uses: peaceiris/actions-gh-pages@v4 # Updated from v3
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           publish_dir: ./dist
+#           keep_files: true # Preserve existing files in gh-pages branch
+
 name: Deploy
 
 on:
@@ -12,21 +65,30 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4 # Updated from v3
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v4 # Updated from v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "20" # Specify Node.js version (recommended)
+          node-version: "20"
+          cache: "npm" # Add caching for faster builds
 
       - name: Install dependencies
-        run: npm ci # More reliable than npm-install action
+        run: npm ci --prefer-offline
 
       - name: Build project
-        run: npm run build
+        run: |
+          npm run build
+          # Fix absolute paths in index.html for GitHub Pages
+          sed -i 's|="/|="|g' dist/index.html
+
+      - name: Verify build output
+        run: |
+          ls -R dist
+          cat dist/index.html | grep -E 'src="|href="'
 
       - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4 # Updated from v3
+        uses: actions/upload-artifact@v4
         with:
           name: production-files
           path: ./dist
@@ -39,14 +101,16 @@ jobs:
 
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4 # Updated from v3
+        uses: actions/download-artifact@v4
         with:
           name: production-files
           path: ./dist
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4 # Updated from v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          keep_files: true # Preserve existing files in gh-pages branch
+          keep_files: false # Changed to false to prevent stale files
+          enable_jekyll: false # Essential for SPAs
+          cname: mustafa200kh.github.io # Add if using custom domain
