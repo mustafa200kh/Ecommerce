@@ -24,6 +24,16 @@ const ProductsCard = memo(
     isLiked,
     isAuthorized,
   }: TProduct) => {
+    console.log({
+      id,
+      title,
+      price,
+      img,
+      max,
+      quantity,
+      isLiked,
+      isAuthorized,
+    });
     const dispatch = useAppDispatch();
     // Animating add to cart click operation
 

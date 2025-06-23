@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import actGetProductsByCatPrfix from "./act/actGetProductsByCatPrefix";
 // types & gaurds
 import { isString, TLoading, TProduct } from "@type/index";
+import actGetSampleOfProducts from "./act/actGetSampleOfProductd";
 interface IProductsState {
   records: TProduct[];
   loading: TLoading;
@@ -23,6 +24,7 @@ const productsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // products by category
     builder.addCase(actGetProductsByCatPrfix.pending, (state) => {
       state.loading = "pending";
       state.error = null;
@@ -32,6 +34,21 @@ const productsSlice = createSlice({
       state.records = action.payload;
     });
     builder.addCase(actGetProductsByCatPrfix.rejected, (state, action) => {
+      state.loading = "failed";
+      if (isString(action.payload)) {
+        state.error = action.payload;
+      }
+    });
+    // sample of products
+    builder.addCase(actGetSampleOfProducts.pending, (state) => {
+      state.loading = "pending";
+      state.error = null;
+    });
+    builder.addCase(actGetSampleOfProducts.fulfilled, (state, action) => {
+      state.loading = "succeded";
+      state.records = action.payload;
+    });
+    builder.addCase(actGetSampleOfProducts.rejected, (state, action) => {
       state.loading = "failed";
       if (isString(action.payload)) {
         state.error = action.payload;

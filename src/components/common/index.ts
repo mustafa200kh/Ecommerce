@@ -12,6 +12,9 @@ import DropDownUser from "./dropDownList/DropDownUser";
 import LandingSlider from "./landingSlider/LandingSlider";
 import LoginRequiredMessage from "./popMessage/loginRequiredMessage/LoginRequiredMessage";
 import PlaceOrederConfirmation from "./popMessage/placeOrderConfiramtion/PlaceOrederConfirmation";
+import ExploreCategoriesSection from "./ExploreCategoriesSection/ExploreCategoriesSection";
+import TrendingProducts from "./TrendingProducts/TrendingProducts";
+import OutfitInspiration from "./outfitInspirationSection/OutfitInspiration";
 import Footer from "./Footer/Footer";
 export {
   Header,
@@ -28,5 +31,8 @@ export {
   HeaderLeftSection,
   DropDownUser,
   LandingSlider,
+  ExploreCategoriesSection,
+  TrendingProducts,
+  OutfitInspiration,
   Footer,
 };

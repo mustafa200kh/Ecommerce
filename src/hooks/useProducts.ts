@@ -22,7 +22,6 @@ const useProducts = () => {
   useEffect(() => {
     const payload = params.prefix as string;
     const promise = dispatch(actGetProductsByCatPrfix(payload));
-
     return () => {
       promise.abort();
       dispatch(cleanProductsRecords());

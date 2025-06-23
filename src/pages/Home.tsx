@@ -1,4 +1,9 @@
-import { LandingSlider } from "@components/common";
+import {
+  ExploreCategoriesSection,
+  LandingSlider,
+  OutfitInspiration,
+} from "@components/common";
+import { TrendingProducts } from "@components/common";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -29,8 +34,11 @@ function Home() {
         </div>
         <LandingSlider />
       </div>
-
-      <div className="Trending"></div>
+      <>
+        <ExploreCategoriesSection />
+        <TrendingProducts />
+        <OutfitInspiration />
+      </>
     </div>
   );
 }

@@ -4,11 +4,12 @@ import Loading from "@components/feedback/loading/Loading";
 import PageHeader from "@components/common/Heading/PageHeader";
 // My custom Hook
 import useCategories from "@hooks/useCategories";
+import { TCategory } from "@type/tCategory.types";
 function Categories() {
   const { error, loading, records } = useCategories();
   const categoriesList =
     records.length > 0
-      ? records.map((category) => (
+      ? records.map((category: TCategory) => (
           <CategoriesCard key={category.id} {...category} />
         ))
       : "No Categories Found";
