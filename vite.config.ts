@@ -5,6 +5,6 @@ import vitePluginSvgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [tsconfigPaths(), react(), vitePluginSvgr()],
   base: "/Ecommerce/",
+  plugins: [tsconfigPaths(), react(), vitePluginSvgr()],
 });
