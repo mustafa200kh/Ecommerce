@@ -166,7 +166,7 @@ const ProductDeatils = () => {
             <span className=" text-gray-500 ml-2">Remaining: </span>
             {countBuyItem == productData?.max
               ? "No items avaliable"
-              : `${productData?.max - countBuyItem}`}
+              : `${(productData?.max ?? 10) - countBuyItem}`}
           </p>
           <button
             className="bg-black text-white px-6 py-3 rounded mt-4 w-full"
