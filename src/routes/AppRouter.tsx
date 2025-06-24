@@ -8,6 +8,7 @@ const ProfileLayout = lazy(() => import("@layout/ProfileLayout/ProfileLayout"));
 const Home = lazy(() => import("@pages/Home"));
 const Categories = lazy(() => import("@pages/Categories"));
 const Products = lazy(() => import("@pages/Products"));
+const ProductDetails = lazy(() => import("@pages/ProductDeatils"));
 const ContactUs = lazy(() => import("@pages/ContactUs"));
 const Login = lazy(() => import("@pages/Login"));
 const Register = lazy(() => import("@pages/Register"));
@@ -96,7 +97,21 @@ const router = createHashRouter([
           </Suspense>
         ),
       },
-
+      {
+        path: "productDetails/:prefix",
+        element: (
+          <Suspense
+            fallback={
+              <LottieHandler
+                type="loading"
+                message="Loading Please Wait A Sec"
+              />
+            }
+          >
+            <ProductDetails />
+          </Suspense>
+        ),
+      },
       {
         path: "categories/Products/:prefix",
         element: (

@@ -12,6 +12,7 @@ import Spinner from "@components/common/loaders/Spinner";
 // Svgs
 import Heart from "@assets/heart-svgrepo-com.svg?react";
 import HeartFilled from "@assets/heart-fill-svgrepo-com.svg?react";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProductsCard = memo(
   ({
@@ -24,16 +25,6 @@ const ProductsCard = memo(
     isLiked,
     isAuthorized,
   }: TProduct) => {
-    console.log({
-      id,
-      title,
-      price,
-      img,
-      max,
-      quantity,
-      isLiked,
-      isAuthorized,
-    });
     const dispatch = useAppDispatch();
     // Animating add to cart click operation
 
@@ -95,7 +86,8 @@ const ProductsCard = memo(
           <LoginRequiredMessage setLoginRequiredMessage={setShowModal} />
         </div>
         {/* card */}
-        <div className="p-2 rounded-md overflow-hidden hover:scale-105 transition-all duration-200 cursor-pointer ">
+
+        <div className="p-2 rounded-md overflow-hidden hover:scale-105 transition-all duration-200 cursor-pointer">
           <div className="product-image relative">
             <span
               className="absolute flex items-center justify-center top-2 right-2 w-[30px] h-[30px] bg-white p-[1px] rounded-md hover:shadow-md transition-all duration-200"
@@ -115,45 +107,47 @@ const ProductsCard = memo(
               )}
             </span>
             <div className="">
-              <img
-                src={img}
-                alt={title}
-                className="rounded-t-md min-h-[399px] mx-auto bg-[#eee]"
-              />
+              <Link to={`/productDetails/${id}`}>
+                <img
+                  src={img}
+                  alt={title}
+                  className="rounded-md mx-auto bg-[#eee]"
+                />
+              </Link>
             </div>
-          </div>
-          <div className="p-2">
-            <div className="mb-4">
-              <h3
-                className="text-lighttext dark:text-white  capitalize text-lg truncate"
-                title={title}
-              >
-                {title}
-              </h3>
-            </div>
-            <div className="flex justify-between items-center mb-5">
-              <p className="text-lighttext dark:text-white ">
-                {remainQuantity == 0
-                  ? "No items avaliable"
-                  : `Remaining: ${remainQuantity}`}
-              </p>
-              <p className="text-lighttext dark:text-white ">{price}$</p>
-            </div>
-            <div>
-              <button
-                className="cursor-pointer w-full p-3 bg-hoverColor text-white rounded-lg shadow-lg transition-all duration-500"
-                onClick={addToCartHandler}
-                disabled={isDisableBtn}
-              >
-                {isDisableBtn ? (
-                  <div className="flex justify-center items-center gap-1">
-                    <Spinner />
-                    <span>Loading...</span>
-                  </div>
-                ) : (
-                  "Add to cart"
-                )}
-              </button>
+            <div className="p-2 absolute bottom-0 bg-white bg-opacity-80 w-full max-w-full overflow-hidden">
+              <div className="mb-2">
+                <h3
+                  className="text-lighttext dark:text-white  capitalize text-lg truncate"
+                  title={title}
+                >
+                  {title}
+                </h3>
+              </div>
+              <div className="flex justify-between items-center mb-3">
+                <p className="text-lighttext dark:text-white ">
+                  {remainQuantity == 0
+                    ? "No items avaliable"
+                    : `Remaining: ${remainQuantity}`}
+                </p>
+                <p className="text-lighttext dark:text-white ">{price}$</p>
+              </div>
+              <div>
+                <button
+                  className="cursor-pointer w-full p-3 bg-hoverColor text-white rounded-lg shadow-lg transition-all duration-500"
+                  onClick={addToCartHandler}
+                  disabled={isDisableBtn}
+                >
+                  {isDisableBtn ? (
+                    <div className="flex justify-center items-center gap-1">
+                      <Spinner />
+                      <span>Loading...</span>
+                    </div>
+                  ) : (
+                    "Add to cart"
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </div>

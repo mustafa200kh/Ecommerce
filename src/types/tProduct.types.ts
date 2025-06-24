@@ -4,6 +4,8 @@ export type TProduct = {
   price: number;
   cat_prefix?: string;
   img: string;
+  img2: string;
+  img3: string;
   max: number;
   quantity?: number;
   isLiked?: boolean;

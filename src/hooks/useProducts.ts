@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import {
@@ -19,6 +19,8 @@ const useProducts = () => {
   // bring the wishlist items array of id
   const wishlistItemsId = useAppSelector((state) => state.wishlist.itemsID);
 
+  let [maxPrice, setMaxPrice] = useState();
+
   useEffect(() => {
     const payload = params.prefix as string;
     const promise = dispatch(actGetProductsByCatPrfix(payload));
@@ -27,6 +29,10 @@ const useProducts = () => {
       dispatch(cleanProductsRecords());
     };
   }, [dispatch, paramsPrefix]);
+
+  const rangeHandler = (e: any) => {
+    setMaxPrice(e.target.value);
+  };
 
   // Appending quantity od each element to it
   let fullData = records.map((el) => {
@@ -38,7 +44,7 @@ const useProducts = () => {
     };
   });
 
-  return { loading, error, fullData, paramsPrefix };
+  return { loading, error, fullData, paramsPrefix, rangeHandler, maxPrice };
 };
 
 export default useProducts;

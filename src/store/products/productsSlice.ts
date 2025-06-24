@@ -3,6 +3,7 @@ import actGetProductsByCatPrfix from "./act/actGetProductsByCatPrefix";
 // types & gaurds
 import { isString, TLoading, TProduct } from "@type/index";
 import actGetSampleOfProducts from "./act/actGetSampleOfProductd";
+import actGetProductByID from "./act/actGetProductByID";
 interface IProductsState {
   records: TProduct[];
   loading: TLoading;
@@ -54,10 +55,26 @@ const productsSlice = createSlice({
         state.error = action.payload;
       }
     });
+
+    // Product By Id
+    builder.addCase(actGetProductByID.pending, (state) => {
+      state.loading = "pending";
+      state.error = null;
+    });
+    builder.addCase(actGetProductByID.fulfilled, (state, action) => {
+      state.loading = "succeded";
+      state.records.push(action.payload);
+    });
+    builder.addCase(actGetProductByID.rejected, (state, action) => {
+      state.loading = "failed";
+      if (isString(action.payload)) {
+        state.error = action.payload;
+      }
+    });
   },
 });
 // destructing the {cleanProductsRecords} from products actions
 export const { cleanProductsRecords } = productsSlice.actions;
-export { actGetProductsByCatPrfix };
+export { actGetProductsByCatPrfix, actGetSampleOfProducts, actGetProductByID };
 
 export default productsSlice.reducer;
