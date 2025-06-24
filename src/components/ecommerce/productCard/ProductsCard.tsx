@@ -12,7 +12,7 @@ import Spinner from "@components/common/loaders/Spinner";
 // Svgs
 import Heart from "@assets/heart-svgrepo-com.svg?react";
 import HeartFilled from "@assets/heart-fill-svgrepo-com.svg?react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ProductsCard = memo(
   ({

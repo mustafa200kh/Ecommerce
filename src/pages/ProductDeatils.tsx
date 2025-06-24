@@ -22,7 +22,7 @@ const ProductDeatils = () => {
   const id: number = parseInt(params.prefix?.toString() ?? "0");
   const dispatch = useAppDispatch();
 
-  const { records, loading, error } = useAppSelector((state) => state.products);
+  const { records } = useAppSelector((state) => state.products);
 
   const [images, setImages] = useState<string[]>([]);
   const [mainImage, setMainImage] = useState<string>("");
