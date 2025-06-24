@@ -1,0 +1,34 @@
+import{h as x,b as f,a as d,r as c,i as z,e as P,j as e}from"./index--4rUogNb.js";import{P as m}from"./pagination-jIIqF-4f.js";import{P as j}from"./PageHeader-B9Y9hPNz.js";import{L as y}from"./Loading-B0kHnLlG.js";const v=()=>{const o=x(),s=o.prefix,i=f(),{records:a,loading:l,error:n}=d(r=>r.products),{accessToken:u}=d(r=>r.auth),t=d(r=>r.cart.items),b=d(r=>r.wishlist.itemsID);let[h,g]=c.useState();c.useEffect(()=>{const r=o.prefix,w=i(z(r));return()=>{w.abort(),i(P())}},[i,s]);const p=r=>{g(r.target.value)};let k=a.map(r=>({...r,quantity:t[r.id],isLiked:b.includes(r.id),isAuthorized:!!u}));return{loading:l,error:n,fullData:k,paramsPrefix:s,rangeHandler:p,maxPrice:h}};function I(){const{error:o,fullData:s,loading:i,paramsPrefix:a,rangeHandler:l,maxPrice:n}=v();let u=s.length>0?s.map(t=>n?t.price<n&&e.jsx(m,{...t},t.id):e.jsx(m,{...t},t.id)):`No Products Found of categorey ${a}`;return e.jsxs(e.Fragment,{children:[e.jsx(j,{title:`${a==null?void 0:a.toString().toUpperCase()} Products`}),e.jsxs("div",{children:[e.jsx("label",{htmlFor:"basic-range-slider-usage",className:"block dark:text-white",children:"Filter By Price"}),e.jsx("input",{type:"range",min:0,max:500,onChange:t=>l(t),className:`w-full bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden\r
+          [&::-webkit-slider-thumb]:w-2.5\r
+          [&::-webkit-slider-thumb]:h-2.5\r
+          [&::-webkit-slider-thumb]:-mt-0.5\r
+          [&::-webkit-slider-thumb]:appearance-none\r
+          [&::-webkit-slider-thumb]:bg-white\r
+          [&::-webkit-slider-thumb]:shadow-[0_0_0_4px_rgba(37,99,235,1)]\r
+          [&::-webkit-slider-thumb]:rounded-full\r
+          [&::-webkit-slider-thumb]:transition-all\r
+          [&::-webkit-slider-thumb]:duration-150\r
+          [&::-webkit-slider-thumb]:ease-in-out\r
+          dark:[&::-webkit-slider-thumb]:bg-neutral-700\r
+\r
+          [&::-moz-range-thumb]:w-2.5\r
+          [&::-moz-range-thumb]:h-2.5\r
+          [&::-moz-range-thumb]:appearance-none\r
+          [&::-moz-range-thumb]:bg-white\r
+          [&::-moz-range-thumb]:border-4\r
+          [&::-moz-range-thumb]:border-blue-600\r
+          [&::-moz-range-thumb]:rounded-full\r
+          [&::-moz-range-thumb]:transition-all\r
+          [&::-moz-range-thumb]:duration-150\r
+          [&::-moz-range-thumb]:ease-in-out\r
+\r
+          [&::-webkit-slider-runnable-track]:w-full\r
+          [&::-webkit-slider-runnable-track]:h-2\r
+          [&::-webkit-slider-runnable-track]:bg-gray-100\r
+          [&::-webkit-slider-runnable-track]:rounded-full\r
+          dark:[&::-webkit-slider-runnable-track]:bg-neutral-700\r
+\r
+          [&::-moz-range-track]:w-full\r
+          [&::-moz-range-track]:h-2\r
+          [&::-moz-range-track]:bg-gray-100\r
+          [&::-moz-range-track]:rounded-full`,id:"basic-range-slider-usage","aria-orientation":"horizontal"}),n&&e.jsxs("div",{className:"text-center dark:text-white mb-3",children:["displaying products with price less than $",n]})]}),e.jsx("div",{className:"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6",children:e.jsx(y,{loading:i,error:o,type:"product",children:u})})]})}export{I as default};
