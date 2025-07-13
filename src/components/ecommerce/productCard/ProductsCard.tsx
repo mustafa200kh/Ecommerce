@@ -115,7 +115,7 @@ const ProductsCard = memo(
                 />
               </Link>
             </div>
-            <div className="p-2 absolute bottom-0 bg-white bg-opacity-80 w-full max-w-full overflow-hidden">
+            <div className="p-2 absolute bottom-0 bg-white dark:bg-darktheme rounded-b-md bg-opacity-80 w-full max-w-full overflow-hidden">
               <div className="mb-2">
                 <h3
                   className="text-lighttext dark:text-white  capitalize text-lg truncate"

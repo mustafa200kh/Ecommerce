@@ -96,7 +96,7 @@ const ProductDeatils = () => {
     <>
       <PageHeader title="Product details page" />
       {/* category */}
-      <div className="text-sm text-lighttext">
+      <div className="text-sm text-lighttext dark:text-white px-3">
         {`Home/Products/${productData?.cat_prefix}/${productData?.title}`}
       </div>
       <div className="max-w-6xl mx-auto p-4 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -130,17 +130,17 @@ const ProductDeatils = () => {
 
         {/* Product Info */}
         <div>
-          <h2 className="text-2xl font-semibold mb-2">{productData?.title}</h2>
+          <h2 className="text-2xl font-semibold mb-2 dark:text-white">{productData?.title}</h2>
           <p className="text-yellow-500">
-            ★★★★☆ <span className="text-gray-700">(212 reviews)</span>
+            ★★★★☆ <span className="text-gray-700 dark:text-gray-200">(212 reviews)</span>
           </p>
-          <p className="text-xl font-bold mt-2">
+          <p className="text-xl font-bold mt-2 dark:text-white">
             {productData?.price}$
-            <span className=" text-gray-500 ml-2">20% OFF</span>
+            <span className=" text-gray-500 dark:text-gray-400 ml-2">20% OFF</span>
           </p>
 
           <div className="my-4">
-            <label className="block mb-1">Color: Black</label>
+            <label className="block mb-1 dark:text-white">Color: Black</label>
             <select className="border p-2 rounded w-32">
               <option>Black</option>
               <option>White</option>
@@ -148,13 +148,13 @@ const ProductDeatils = () => {
           </div>
 
           <div className="my-4">
-            <label className="block mb-1">Size:</label>
+            <label className="block mb-1 dark:text-white">Size:</label>
             <div className="grid grid-cols-6 gap-2">
               {["6", "8", "10", "12", "14", "16", "18", "20", "22"].map(
                 (size) => (
                   <button
                     key={size}
-                    className="border p-2 rounded hover:bg-gray-200"
+                    className="border p-2 rounded dark:bg-white dark:border-black hover:bg-gray-200"
                   >
                     {size}
                   </button>
@@ -162,26 +162,26 @@ const ProductDeatils = () => {
               )}
             </div>
           </div>
-          <p className="text-xl text-gray-500 mt-2">
-            <span className=" text-gray-500 ml-2">Remaining: </span>
+          <p className="text-xl text-gray-500 dark:text-lighttheme mt-2">
+            <span className=" text-gray-500 ml-2 dark:text-lighttheme">Remaining: </span>
             {countBuyItem == productData?.max
               ? "No items avaliable"
               : `${(productData?.max ?? 10) - countBuyItem}`}
           </p>
           <button
-            className="bg-black text-white px-6 py-3 rounded mt-4 w-full"
+            className="bg-black text-white px-6 py-3 rounded mt-4 w-full dark:bg-darktheme"
             onClick={addToCartHandler}
             disabled={countBuyItem == productData?.max}
           >
             Add to Cart
           </button>
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-sm text-gray-500 dark:text-gray-200 mt-2">
             Enjoy FREE express & Free Returns on orders over $35!
           </p>
 
           <div className="mt-4">
-            <h3 className="font-semibold mb-2">Product Details</h3>
-            <ul className="list-disc list-inside text-sm text-gray-700">
+            <h3 className="font-semibold mb-2 dark:text-lighttheme">Product Details</h3>
+            <ul className="list-disc list-inside text-sm dark:text-gray-200 text-gray-700">
               <li>Dark grey</li>
               <li>Acid wash finish</li>
               <li>Drawstring waist</li>
@@ -219,7 +219,7 @@ const ProductDeatils = () => {
             <img
               src={mainImage}
               alt="Zoomed view"
-              className={`max-w-3xl max-h-[90vh] rounded shadow-lg transition-opacity duration-300 ${
+              className={`p-4 max-w-3xl max-h-[90vh] shadow-lg transition-opacity duration-300 ${
                 transitioning ? "opacity-0" : "opacity-100"
               }`}
             />

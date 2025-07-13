@@ -25,7 +25,7 @@ function Products() {
       <PageHeader
         title={`${paramsPrefix?.toString().toUpperCase()} Products`}
       />
-      <div>
+      <div className="px-2">
         <label
           htmlFor="basic-range-slider-usage"
           className="block dark:text-white"

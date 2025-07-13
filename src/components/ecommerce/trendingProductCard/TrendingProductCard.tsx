@@ -11,6 +11,7 @@ import CartSvg from "@assets/cart-large-2-svgrepo-com.svg?react";
 import { useAppDispatch } from "@store/hooks";
 // redux actions
 import { addToCart } from "@store/cart/cartSlice";
+import { Link } from "react-router-dom";
 
 const TrendingProductCard = memo(
   ({ id, img, title, max, quantity, price }: TProduct) => {
@@ -66,10 +67,10 @@ const TrendingProductCard = memo(
           className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center 
   opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out text-white text-sm"
         >
-          <button className="bg-white text-black px-4 py-2 rounded mb-2 flex items-center">
+          <Link to={`/productDetails/${id}`} className="bg-white text-black px-4 py-2 rounded mb-2 flex items-center">
             <p className="inline-block">View</p>
             <ExpandSvg className="ml-2 w-3 h-3 inline-block" />
-          </button>
+          </Link>
           <button
             className="bg-white text-black px-4 py-2 rounded mb-2 flex items-center"
             onClick={addToCartHandler}
